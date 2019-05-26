@@ -17,11 +17,11 @@ public class PermissionActivity extends AppCompatActivity {
 
     public static void requestPermission(Context context,String[]permissions,int requestCode,IPermission iPermission){
         permissionListen = iPermission;
-        Intent intent = new Intent();
+        Intent intent = new Intent(context,PermissionActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        Bundle bundle = new Bundle();
-        bundle.putStringArray(PARAM_PERMISSION,permissions);
-        bundle.putInt(PARAM_REQUEST_PERMISSION,requestCode);
+        intent.putExtra(PARAM_PERMISSION,permissions);
+        intent.putExtra(PARAM_REQUEST_PERMISSION,requestCode);
+
         context.startActivity(intent);
         if (context instanceof Activity){
             //屏蔽进入动画
